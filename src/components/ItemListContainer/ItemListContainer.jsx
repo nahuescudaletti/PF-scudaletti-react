@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js" 
 import React from 'react'
-import pantalones from "../../data/pantalones/pantalones";
+import pantalones from "../../../public/data/pantalones/pantalones";
+
 
 export const ItemListContainer = ({greeting}) => {
     return (
