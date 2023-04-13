@@ -11,7 +11,7 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
   return (
     <div className="app">
         <NavBar/>
-        <ItemListContainer greeting={'BIENVENIDO'}/>
+        <ItemListContainer greeting={'pantalones'}/>
     </div>
   );
 }
