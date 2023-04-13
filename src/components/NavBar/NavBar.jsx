@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.min.js"
+import "bootstrap/dist/js/bootstrap.min.js" 
 import React from 'react'
 import CartWidget from '../CartWidget/CartWidget';
 export const NavBar = () => {
   return (
-    <div>
+    <div >
         <nav>
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">MODA</a>
