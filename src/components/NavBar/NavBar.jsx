@@ -10,10 +10,10 @@ export const NavBar = () => {
     <h3 className="navbar-brand text-dark me-auto">MODA</h3>
     <ul className="navbar-nav">
       <li className="nav-item">
-        <button className="nav-link text-dark mx-3 border-0 bg-transparent">remeras</button>
+        <button className="nav-link text-dark mx-3 border-0 bg-transparent">pantalones</button>
       </li>
       <li className="nav-item">
-        <button className="nav-link text-dark mx-3 border-0 bg-transparent">pantalones</button>
+        <button className="nav-link text-dark mx-3 border-0 bg-transparent">remeras</button>
       </li>
       <li className="nav-item">
         <button className="nav-link text-dark mx-3 border-0 bg-transparent">conjuntos</button>

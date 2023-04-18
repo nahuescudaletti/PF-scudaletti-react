@@ -1,21 +1,36 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.min.js" 
-import React from 'react'
-import pantalones from "../../../public/data/pantalones/pantalones";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import pantalones from '../stock/pantalones/pantalones.jsx';
 
 export const ItemListContainer = ({greeting}) => {
-    return (
-   
-              <div className="card text-bg-dark">
-                {pantalones.map((pantalon)=>(
-                  <div key={pantalon.id}>
-                    <img className="card-img" src={pantalon.image} alt={pantalon.name} />
-                    <h2 className="card-title">{pantalon.name}</h2>
-                    <h3 className="card-text">{pantalon.color}</h3>
-                  </div>
-                ))}
-              </div>
-    );
-    }
-    export default ItemListContainer;
+  return (
+<div className="card-container row m-2 justify-content-around">
+  {pantalones.map((pantalon) => (
+    <div className="col col-md-3 col-lg-3">
+      <Card className="m-2 border- border-dark" key={pantalon.id}>
+        <Card.Img
+         
+          variant="top"
+          src={pantalon.image}
+          style={{ height: "300px", objectFit: "cover", objectPosition: "center" }}
+        />
+        <Card.Body >
+          <Card.Title className="d-flex justify-content-center">{pantalon.name}</Card.Title>
+          <Card.Text className="d-flex justify-content-center">{pantalon.color}</Card.Text>
+          <Card.Text className="d-flex justify-content-center">Stock {pantalon.stock}</Card.Text>
+          <div className="d-flex justify-content-center">
+          <Button variant="primary">agregar al carrito</Button>
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
+  ))}
+</div>
+  );
+}
+
+export default ItemListContainer;
