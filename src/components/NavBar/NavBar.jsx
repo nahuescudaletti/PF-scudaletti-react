@@ -1,27 +1,34 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js" 
 import React from 'react'
-import CartWidget from '../CartWidget/CartWidget';
+import CartWidget from "./CartWidget/CartWidget";
+import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
   return (
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container-fluid d-flex justify-content-center">
-    <h3 className="navbar-brand text-dark me-auto">MODA</h3>
-    <ul className="navbar-nav">
+    <div className="d-flex me-auto">
+      <NavLink to="/" className="nav-link">
+        <h3 className="navbar-brand text-dark">MODA</h3>
+      </NavLink>
+    </div>
+
+    <ul className="navbar-nav mx-auto">
       <li className="nav-item">
-        <button className="nav-link text-dark mx-3 border-0 bg-transparent">pantalones</button>
+        <NavLink to="/pantalones" className="nav-link">Pantalones</NavLink>
       </li>
       <li className="nav-item">
-        <button className="nav-link text-dark mx-3 border-0 bg-transparent">remeras</button>
+        <NavLink to="/remeras" className="nav-link">Remeras</NavLink>
       </li>
       <li className="nav-item">
-        <button className="nav-link text-dark mx-3 border-0 bg-transparent">conjuntos</button>
+        <NavLink to="/camperas" className="nav-link">Camperas</NavLink>
       </li>
     </ul>
+
     <li className="nav-item ms-auto list-unstyled">
-        <CartWidget />
-      </li>
+      <CartWidget />
+    </li>
   </div>
 </nav>
   );

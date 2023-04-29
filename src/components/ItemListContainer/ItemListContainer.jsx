@@ -1,42 +1,24 @@
+import { useEffect, useState } from "react"
+import { getProducts } from "../productos/asyncMock"
+import ItemList from "../ItemList/ItemList"
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
-import Card from 'react-bootstrap/Card';
-import pantalones from '../productos/pantalones/pantalones.jsx';
-import ItemCount from "../ItemCount.jsx/ItemCount.jsx";
-
-export const ItemListContainer = ({greeting}) => {
-  const onAdd=(quantity)=>{
-    console.log("compraste"+quantity+ "unidades" );
-  }
-  return (
- <>
- <h1 className="d-flex justify-content-center">{greeting}</h1>
-<div className="card-container row m-2 justify-content-around">
-  {pantalones.map((pantalon) => (
-    <div className="col col-md-3 col-lg-3">
-      <Card className="m-2 border- border-dark" key={pantalon.id}>
-        <Card.Img
-          variant="top"
-          src={pantalon.image}
-          style={{ height: "300px", objectFit: "cover", objectPosition: "center" }}
-        />
-        <Card.Body >
-          <Card.Title className="d-flex justify-content-center">{pantalon.name}</Card.Title>
-          <Card.Text className="d-flex justify-content-center">{pantalon.color}</Card.Text>
-          <Card.Text className="d-flex justify-content-center">Stock: {pantalon.stock}</Card.Text>
-          <Card.Text className="d-flex justify-content-center">Precio: {pantalon.price}</Card.Text>
-          
-          <div className="d-flex justify-content-center">
-              <ItemCount initial={1} stock={pantalon.stock} onAdd={onAdd}/>
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
-  ))}
-</div>
-</>
-  );
+const ItemListContainer = ({greeting})=> {
+  const[products, setProducts] = useState([])
+  
+  useEffect(()=>{
+    getProducts()
+    .then(response=>{
+      setProducts(response)
+    })
+    .catch(error=>{
+      console.error(error)
+    })
+  },[])
 }
-
-export default ItemListContainer;
+return(
+  <div>
+    <h1>{greeting}</h1>
+    <ItemList products={products}/>
+  </div>
+)
+export default ItemListContainer
