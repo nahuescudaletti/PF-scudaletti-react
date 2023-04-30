@@ -14,27 +14,17 @@ export const ItemCount = ({initial, stock, onAdd}) => {
 
     return (
         <div className='counter my-3'>
-            <div className='d-flex justify-content-center'>
-                <Button disabled={count <= 1} onClick={descontar} variant="primary" className="mx-1">-</Button>
-                <span className="mx-1">{count}</span>
-                <Button disabled={count >= stock} onClick={agregar} variant="primary" className="mx-1">+</Button>
-            </div>
-            <div>
-                <Button disabled={count <=0} onClick={()=> onAdd(count)} variant="primary" className="my-2">agregar al carrito</Button>
-            </div>
+        <div className='d-flex justify-content-center'>
+          <Button disabled={count <= 1} onClick={descontar} variant="primary" className="mx-1">-</Button>
+          <span className="mx-1">{count}</span>
+          <Button disabled={count >= stock} onClick={agregar} variant="primary" className="mx-1">+</Button>
         </div>
+        <div className='d-flex justify-content-center'>
+          <Button disabled={count <=0} onClick={()=> onAdd(count)} variant="primary" className="my-2">agregar al carrito</Button>
+        </div>
+      </div>
+      
     )
 }
 
 export default ItemCount;
-
-
-   {/*
-        CONTADOR poner en ver detalle
-          
-
-funciona para ver el carrito
-              const onAdd=(quantity)=>{
-    console.log("compraste"+quantity+ "unidades" );
-  }
-          </div> */}
