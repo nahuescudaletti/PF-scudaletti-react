@@ -31,8 +31,7 @@ export default ItemCount;
 
    {/*
         CONTADOR poner en ver detalle
-          <div className="d-flex justify-content-center">
-              <ItemCount initial={1} stock={pantalon.stock} onAdd={onAdd}/>
+          
 
 funciona para ver el carrito
               const onAdd=(quantity)=>{

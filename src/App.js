@@ -5,9 +5,8 @@ import './App.css';
 import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import RemerasContainer from "./components/rutesProducts/RemerasContainer";
-import PantalonesContainer from "./components/rutesProducts/PantalonesContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 
 
  export function App() {
@@ -15,9 +14,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<ItemListContainer greeting="Bienvenido" />} />
-        <Route path="/remeras" element={<RemerasContainer greeting="Remeras" />} />
-        <Route path="/pantalones" element={<PantalonesContainer greeting="Pantalones" />} />
+        <Route path="/" element={<ItemListContainer/>} />
+        <Route path="/category/:categoryId" element={<ItemListContainer/>} />
+        <Route path="/item/:itemId" element={<ItemDetailContainer/>} />
       </Routes>
     </BrowserRouter>
   );

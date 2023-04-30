@@ -16,10 +16,10 @@ export const NavBar = () => {
 
     <ul className="navbar-nav mx-auto">
       <li className="nav-item">
-        <NavLink to="/pantalones" className="nav-link">Pantalones</NavLink>
+        <NavLink to="/category/pantalones" className="nav-link ">Pantalones</NavLink>
       </li>
       <li className="nav-item">
-        <NavLink to="/remeras" className="nav-link">Remeras</NavLink>
+        <NavLink to="/category/remeras" className="nav-link">Remeras</NavLink>
       </li>
       <li className="nav-item">
         <NavLink to="/camperas" className="nav-link">Camperas</NavLink>
