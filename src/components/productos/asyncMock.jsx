@@ -5,7 +5,8 @@ const products= [
           color: "beige",
           price: 100,
           image: process.env.PUBLIC_URL + "/data/pics/remeras/beige.jpg",
-          stock: 10
+          stock: 10,
+          category: "remeras"
       },
       {
           id: 2,
@@ -13,7 +14,8 @@ const products= [
           color: "gris",
           price: 100,
           image: process.env.PUBLIC_URL + "/data/pics/remeras/gris.jpg",
-          stock: 5
+          stock: 5,
+          category: "remeras"
       },
       {
           id: 3,
@@ -21,7 +23,8 @@ const products= [
           color: "negro",
           price: 100,
           image: process.env.PUBLIC_URL + "/data/pics/remeras/negra.jpg",
-          stock: 3
+          stock: 3,
+          category: "remeras"
       },
      {
           id: 4,
@@ -29,7 +32,8 @@ const products= [
           color: "beige",
           price: 100,
           image: process.env.PUBLIC_URL + "/data/pics/pantalones/cargohombre.jpg",
-          stock: 10
+          stock: 10,
+          category: "pantalones"
       },
       {
           id: 5,
@@ -37,7 +41,8 @@ const products= [
           color: "gris",
           price: 100,
           image: process.env.PUBLIC_URL + "/data/pics/pantalones/grishombre.jpg",
-          stock: 5
+          stock: 5,
+          category: "pantalones"
       },
       {
           id: 6,
@@ -45,7 +50,8 @@ const products= [
           color: "negro",
           price: 100,
           image: process.env.PUBLIC_URL + "/data/pics/pantalones/negrohombre.jpg",
-          stock: 3
+          stock: 3,
+          category: "pantalones"
       },
       
 ]
