@@ -4,6 +4,7 @@ import { Card, Spinner } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getProductById } from "../productos/asyncMock";
 
+
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);

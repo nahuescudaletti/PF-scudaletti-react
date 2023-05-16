@@ -3,7 +3,7 @@ import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = (props) => {
     console.log(props);
-    const { id, name, color, price, image, stock } = props;
+    const {name, color, price, image, stock } = props;
   return (
 <Card  className="m-2 border border-dark justify-content-center">
   <Card.Img variant="top" src={image} alt={name} className="img-fluid" />

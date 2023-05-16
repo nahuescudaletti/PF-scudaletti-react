@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { getProducts, getProductsByCategory } from "../productos/asyncMock"
 import { useParams } from "react-router-dom"
 import ItemList from "../ItemList/ItemList"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.min.js"
 
 const ItemListContainer = ({greeting}) => {
   const [products, setProducts] = useState([])
@@ -19,9 +21,11 @@ const ItemListContainer = ({greeting}) => {
       })
   }, [categoryId])
 
+  const category = categoryId ? categoryId.toUpperCase() : "Productos"; // Obtener nombre de la categoría en la URL y capitalizarla
+
   return (
     <div>
-      <h1>{greeting}</h1>
+      <h1 className="text-center  fs-2 mb-2">{greeting} {category}</h1>
       <ItemList products={products}/>
     </div>
   )
