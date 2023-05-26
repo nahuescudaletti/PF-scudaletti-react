@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../Context/CartContext';
 import CartItem from '../CartItem/CartItem';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Cart = () => {
   const { cart, clearCart } = useContext(CartContext);
@@ -31,8 +33,8 @@ const Cart = () => {
         />
       ))}
       <h3>Total: ${total}</h3>
-      <button onClick={() => clearCart()} className="Button">Limpiar carrito</button>
-      <Link to="/checkout" className="Option">Checkout</Link>
+      <Button variant="danger" onClick={() => clearCart()} className="m-2">Limpiar carrito</Button>
+      <Link to="/checkout" className="btn btn-primary m-2">Checkout</Link>
     </div>
   );
 };
