@@ -1,9 +1,30 @@
 import { Card } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import CartContext from "../../Context/CartContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-const ItemDetail = (props) => {
-    console.log(props);
-    const {name, color, price, image, stock } = props;
+
+const ItemDetail = ({id, name, color, image, price, stock }) => {
+  const [quantityAdded, setQuantityAdded] = useState(0)
+
+  const {addItem} = useContext(CartContext)
+
+  const handleOnAdd = (quantity) => {
+    setQuantityAdded(quantity);
+  
+    const item = {
+      id,
+      name,
+      price,
+    };
+  
+    addItem(item, quantity);
+  };
+  
+
   return (
 <Card  className="m-2 border border-dark justify-content-center">
   <Card.Img variant="top" src={image} alt={name} className="img-fluid" />
@@ -12,7 +33,14 @@ const ItemDetail = (props) => {
     <Card.Text>{color}</Card.Text>
     <Card.Text>Stock: {stock}</Card.Text>
     <Card.Text>Precio: {price}</Card.Text>
-    <ItemCount initial={1} stock={stock} onAdd={(quantity)=> console.log("compraste " + quantity + " unidades")}/>
+    <footer>
+      {quantityAdded> 0 ?(
+       <Link to='/cart'>terminar compra</Link>
+      ) :(
+        <ItemCount initial={1} stock={stock} onAdd={handleOnAdd}/>
+      )
+      }
+    </footer>
   </Card.Body>
 </Card>
 
