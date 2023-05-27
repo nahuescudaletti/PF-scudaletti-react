@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Card, Spinner } from "react-bootstrap";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { getProductById } from "../productos/asyncMock";
+import { getDocs, doc } from "firebase/firestore";
+import { db } from "../firebase-config";
 
 
 const ItemDetailContainer = () => {
@@ -12,13 +13,21 @@ const ItemDetailContainer = () => {
   const { itemId } = useParams();
 
   useEffect(() => {
-    getProductById(parseInt(itemId))
+    setLoading(true);
+
+    const docRef = doc(db, "products", itemId);
+
+    getDocs(docRef)
       .then((response) => {
-        setProduct(response);
-        setLoading(false);
+        const data = response.data();
+        const productAdapted = { id: response.id, ...data };
+        setProduct(productAdapted);
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [itemId]);
 

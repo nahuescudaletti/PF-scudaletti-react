@@ -1,34 +1,48 @@
-import { useEffect, useState } from "react"
-import { getProducts, getProductsByCategory } from "../productos/asyncMock"
-import { useParams } from "react-router-dom"
-import ItemList from "../ItemList/ItemList"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.min.js"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ItemList from "../ItemList/ItemList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../firebase-config";
 
-const ItemListContainer = ({greeting}) => {
-  const [products, setProducts] = useState([])
-  const { categoryId } = useParams()
+
+
+const ItemListContainer = ({ greeting }) => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const { categoryId } = useParams();
 
   useEffect(() => {
-    const asyncfunc = categoryId ? getProductsByCategory : getProducts
+    setLoading(true);
 
-    asyncfunc(categoryId)
-      .then(response => {
-        setProducts(response)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }, [categoryId])
+    const collectionRef = categoryId
+      ? query(collection(db, "products"), where("category", "==", categoryId))
+      : collection(db, "products");
 
-  const category = categoryId ? categoryId.toUpperCase() : "Productos"; // Obtener nombre de la categoría en la URL y capitalizarla
+    getDocs(collectionRef)
+      .then((response) => {
+        const productsAdapted = response.docs.map((doc) => {
+          const data = doc.data();
+          return { id: doc.id, ...data };
+        });
+        setProducts(productsAdapted);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [categoryId]); // Asegúrate de incluir categoryId como una dependencia del useEffect
 
   return (
     <div>
-      <h1 className="text-center  fs-2 mb-2">{greeting} {category}</h1>
-      <ItemList products={products}/>
+      <h1 className="text-center fs-2 mb-2">{greeting}</h1>
+      <ItemList products={products} />
     </div>
-  )
-}
+  );
+};
 
-export default ItemListContainer
+export default ItemListContainer;
