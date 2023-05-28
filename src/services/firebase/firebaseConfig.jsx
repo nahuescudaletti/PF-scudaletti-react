@@ -1,21 +1,19 @@
 
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyB2XJ82Y2FHArQrd3t-Z28rRCs5bcd1Esk",
-  authDomain: "pf-scudaletti-reactjs.firebaseapp.com",
-  projectId: "pf-scudaletti-reactjs",
-  storageBucket: "pf-scudaletti-reactjs.appspot.com",
-  messagingSenderId: "589948515028",
-  appId: "1:589948515028:web:918f70568d924097de4141",
-  measurementId: "G-P3H6KS5SNN"
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId,
+  measurementId:process.env.REACT_APP_measurementId
 };
 
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-export const db = getFirestore(app);
+const app = initializeApp(firebaseConfig)
+export const db = getFirestore(app)

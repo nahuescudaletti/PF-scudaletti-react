@@ -1,28 +1,40 @@
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import { getProductById } from "../productos/asyncMock";
-import { useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseConfig";
+import { useState, useEffect } from "react";
 
-
-const Item = ({ id, name, color, price, image, stock }) => {
+const Item = ({ id, name, color, price, img, stock }) => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleClick = () => {
-    setLoading(true);
-    getProductById(id).then((product) => {
-      console.log(product);
-      setProduct(product);
+  useEffect(() => {
+    const getProductData = async () => {
+      setLoading(true);
+      try {
+        const docRef = doc(db, "products", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const productData = docSnap.data();
+          setProduct(productData);
+        } else {
+          console.log('No se encontró el producto');
+        }
+      } catch (error) {
+        console.log('Error al obtener los datos del producto:', error);
+      }
       setLoading(false);
-    });
-  };
+    };
+
+    getProductData();
+  }, [id]);
 
   return (
     <article>
       <Card className="m-2 border border-dark">
-        {image ? (
+        {img ? (
           <Link to={`/item/${id}`}>
-            <Card.Img variant="top" src={image} alt={name} className="img-fluid" />
+            <Card.Img variant="top" src={img} alt={name} className="img-fluid" />
           </Link>
         ) : null}
         <Card.Body>
@@ -33,20 +45,17 @@ const Item = ({ id, name, color, price, image, stock }) => {
           {product ? (
             <div>
               <Card.Text className="text-center">{product.description}</Card.Text>
-              <Card.Text className="text-center">Categoría: {product.category}</Card.Text>
-              <Card.Text className="text-center">Subcategoría: {product.subcategory}</Card.Text>
             </div>
-          ) : (
-            <div className="d-flex justify-content-center">
-              {loading ? (
-                <span>Cargando información adicional del producto...</span>
-              ) : (
-                <Link to={`/item/${id}`} onClick={handleClick}>
-                  ver detalle
-                </Link>
-              )}
-            </div>
-          )}
+          ) : null}
+          <div className="d-flex justify-content-center">
+            {loading ? (
+              <span>Cargando información adicional del producto...</span>
+            ) : (
+              <Link to={`/item/${id}`}>
+                Ver detalle
+              </Link>
+            )}
+          </div>
         </Card.Body>
       </Card>
     </article>

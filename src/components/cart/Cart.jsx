@@ -6,9 +6,9 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Cart = () => {
-  const { cart, clearCart } = useContext(CartContext);
+  const { cart, clearCart, totalQuantity, total } = useContext(CartContext);
 
-  if (cart.length === 0) {
+  if (totalQuantity === 0) {
     return (
       <div>
         <h1>No hay items</h1>
@@ -16,25 +16,13 @@ const Cart = () => {
       </div>
     );
   }
-
-  const total = cart.reduce((accumulator, currentItem) => {
-    return accumulator + currentItem.price * currentItem.quantity;
-  }, 0);
-
+  
   return (
     <div>
-      {cart.map((product) => (
-        <CartItem
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          price={product.price}
-          quantity={product.quantity}
-        />
-      ))}
+      {cart.map(p=><CartItem key={p.id} {...p}/>)}
       <h3>Total: ${total}</h3>
       <Button variant="danger" onClick={() => clearCart()} className="m-2">Limpiar carrito</Button>
-      <Link to="/checkout" className="btn btn-primary m-2">Checkout</Link>
+      <Link to="/checkout" className="btn btn-primary m-2">finalizar compra</Link>
     </div>
   );
 };

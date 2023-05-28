@@ -3,7 +3,7 @@ import { CartContext } from '../../Context/CartContext';
 import { Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const CartItem = ({ name, price, quantity, id, image, color }) => {
+const CartItem = ({ name, price, quantity, id, img, color }) => {
   const { removeItem } = useContext(CartContext);
 
   const subtotal = price * quantity;

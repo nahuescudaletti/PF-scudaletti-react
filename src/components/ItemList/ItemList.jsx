@@ -5,9 +5,9 @@ const ItemList = ({ products }) => {
   return (
     <Container>
       <Row xs={1} md={2} lg={3} className="g-4">
-        {products.map((prod) => (
+              {products.map((prod) => (
           <Col key={prod.id}>
-            <Item {...prod} />
+            <Item {...prod} img={prod.img} />
           </Col>
         ))}
       </Row>
